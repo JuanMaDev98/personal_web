@@ -1,0 +1,555 @@
+// Prisma schema — Red de Webs JuanMa Crypto
+// Ver GUIA_MAESTRA_RED_WEBS_JUANMA_CRYPTO.md seccion 11
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================
+// CORE
+// ============================================================
+
+model Site {
+  id          String     @id @default(cuid())
+  slug        String     @unique
+  name        String
+  subdomain   String     @unique
+  description String?
+  accentColor String?
+  status      SiteStatus @default(ACTIVE)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  events      Event[]
+  promos      Promo[]    @relation("PromoSites")
+
+  @@index([status])
+}
+
+enum SiteStatus {
+  ACTIVE
+  INACTIVE
+  DRAFT
+}
+
+// ============================================================
+// AUTH & USERS
+// ============================================================
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  image         String?
+  emailVerified DateTime?
+  role          UserRole  @default(USER)
+  banned        Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts  Account[]
+  sessions  Session[]
+  builds    EldoriaBuild[]
+  blogPosts BlogPost[]
+  comments  BlogComment[]
+}
+
+enum UserRole {
+  USER
+  EDITOR
+  OWNER
+}
+
+// NextAuth required tables
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ============================================================
+// ANALYTICS
+// ============================================================
+
+model Event {
+  id          String   @id @default(cuid())
+  siteId      String
+  site        Site     @relation(fields: [siteId], references: [slug])
+  type        String
+  path        String?
+  locale      String?
+  referrer    String?
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  props       Json?
+  visitorId   String?
+  createdAt   DateTime @default(now())
+
+  @@index([siteId, type, createdAt])
+  @@index([visitorId])
+  @@index([createdAt])
+}
+
+// ============================================================
+// METRICS (auto-refresh from social APIs)
+// ============================================================
+
+model Metric {
+  id          String   @id @default(cuid())
+  source      MetricSource @unique
+  label       String
+  value       BigInt   @default(0)
+  displayValue String?
+  url         String?
+  iconUrl     String?
+  autoRefresh Boolean  @default(true)
+  lastUpdated DateTime?
+  errorMessage String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum MetricSource {
+  YOUTUBE_SUBSCRIBERS
+  TELEGRAM_CHANNEL_MEMBERS
+  TELEGRAM_GROUP_MEMBERS
+  WHATSAPP_MEMBERS
+  DISCORD_MEMBERS
+  TWITTER_FOLLOWERS
+  TIKTOK_FOLLOWERS
+  INSTAGRAM_FOLLOWERS
+  CUSTOM
+}
+
+// ============================================================
+// PARTNERS & PROMOS & TESTIMONIALS
+// ============================================================
+
+model Partner {
+  id        String        @id @default(cuid())
+  name      String
+  logo      String?
+  website   String?
+  email     String?
+  telegram  String?
+  twitter   String?
+  discord   String?
+  status    PartnerStatus @default(ACTIVE)
+  isFeatured Boolean      @default(false)
+  notes     String?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  promos      Promo[]
+  testimonials Testimonial[]
+  contracts    Contract[]
+  blogPosts    BlogPost[]   @relation("BlogPostSponsor")
+  sponsoredCampaigns BlogCampaign[] @relation("BlogCampaignSponsor")
+}
+
+enum PartnerStatus {
+  ACTIVE
+  PAUSED
+  BLACKLISTED
+}
+
+model Contract {
+  id          String    @id @default(cuid())
+  partnerId   String
+  partner     Partner   @relation(fields: [partnerId], references: [id], onDelete: Cascade)
+  amount      Decimal?  @db.Decimal(12, 2)
+  currency    String?
+  startDate   DateTime
+  endDate     DateTime?
+  conditions  String?
+  attachments String[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Promo {
+  id           String       @id @default(cuid())
+  name         String
+  partnerId    String
+  partner      Partner      @relation(fields: [partnerId], references: [id], onDelete: Cascade)
+  type         PromoType
+  content      Json
+  placements   String[]
+  targetSites  Site[]       @relation("PromoSites")
+  startDate    DateTime
+  endDate      DateTime
+  status       PromoStatus  @default(DRAFT)
+  priority     Int          @default(0)
+  impressions  Int          @default(0)
+  clicks       Int          @default(0)
+  createdBy    String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+enum PromoType {
+  HEADER_BANNER
+  SIDEBAR_BANNER
+  POPUP
+  HOME_FEATURED
+  TRACKER_FEATURED
+  TRACKER_RECOMMENDED_BADGE
+  SPONSORED_REVIEW
+  INTERSTITIAL
+}
+
+enum PromoStatus {
+  DRAFT
+  ACTIVE
+  PAUSED
+  FINISHED
+}
+
+model Testimonial {
+  id         String             @id @default(cuid())
+  authorName String
+  authorRole String?
+  authorPhoto String?
+  authorUrl  String?
+  content    String
+  videoUrl   String?
+  category   TestimonialCategory
+  status     TestimonialStatus  @default(PENDING)
+  visibleOn  String[]
+  partnerId  String?
+  partner    Partner?           @relation(fields: [partnerId], references: [id])
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
+}
+
+enum TestimonialCategory {
+  PARTNER
+  CREATOR
+  COMMUNITY
+}
+
+enum TestimonialStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+// ============================================================
+// FEEDBACK (unified inbox)
+// ============================================================
+
+model Feedback {
+  id         String         @id @default(cuid())
+  siteSlug   String
+  type       FeedbackType
+  payload    Json
+  email      String?
+  status     FeedbackStatus @default(NEW)
+  createdAt  DateTime       @default(now())
+  resolvedAt DateTime?
+}
+
+enum FeedbackType {
+  CONTACT
+  PROJECT_SUGGESTION
+  BUG_REPORT
+  WEB_SUGGESTION
+  GENERAL
+}
+
+enum FeedbackStatus {
+  NEW
+  READ
+  REPLIED
+  ARCHIVED
+}
+
+// ============================================================
+// ACHIEVEMENTS
+// ============================================================
+
+model Achievement {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  date        DateTime
+  category    String?
+  iconUrl     String?
+  featured    Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([order, date])
+}
+
+// ============================================================
+// CONTENT (dynamic, editable from HUB)
+// ============================================================
+
+model SiteContent {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     Json
+  updatedAt DateTime @updatedAt
+}
+
+// ============================================================
+// PROJECT TRACKER (placeholder for future)
+// ============================================================
+
+model Project {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  name        String
+  logo        String?
+  tagline     String?
+  description String?
+  category    String
+  status      ProjectStatus @default(WATCHLIST)
+  tags        String[]
+
+  ratingReliability   Int @default(0)
+  ratingStability     Int @default(0)
+  ratingProfitability Int @default(0)
+  ratingInvestment    Int @default(0)
+  ratingEaseOfUse     Int @default(0)
+  ratingSupport       Int @default(0)
+  globalScore         Int @default(0)
+
+  isFeatured    Boolean   @default(false)
+  isRecommended Boolean   @default(false)
+  featuredUntil DateTime?
+
+  referralLinks   Json?
+  socialLinks     Json?
+  youtubeVideoIds String[]
+  communityReviews Json?
+
+  lastUpdated DateTime?
+  notes       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+enum ProjectStatus {
+  ACTIVE
+  BETA
+  WATCHLIST
+  RUGGED
+  INACTIVE
+}
+
+// ============================================================
+// ELDORIA (placeholder for future)
+// ============================================================
+
+model Monster {
+  id          String   @id @default(cuid())
+  name        String
+  image       String?
+  level       Int
+  goldPerKill Int
+  expPerKill  Int
+  location    String?
+  dropRates   Json?
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model EldoriaBuild {
+  id       String  @id @default(cuid())
+  userId   String
+  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name     String
+  race     String
+  class    String
+  stats    Json
+  isPublic Boolean @default(false)
+  createdAt DateTime @default(now())
+}
+
+model ChatRoom {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  messages    ChatMessage[]
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  roomId    String
+  room      ChatRoom @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  userId    String
+  content   String
+  createdAt DateTime @default(now())
+
+  @@index([roomId, createdAt])
+}
+
+// ============================================================
+// BLOG (placeholder for future)
+// ============================================================
+
+model BlogCategory {
+  id          String     @id @default(cuid())
+  slug        String     @unique
+  name        String
+  description String?
+  color       String?
+  posts       BlogPost[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model BlogTag {
+  id        String     @id @default(cuid())
+  slug      String     @unique
+  name      String
+  posts     BlogPost[] @relation("BlogPostTags")
+  createdAt DateTime   @default(now())
+}
+
+model BlogPost {
+  id             String           @id @default(cuid())
+  slug           String           @unique
+  title          String
+  excerpt        String
+  content        String
+  coverImage     String?
+  authorId       String?
+  author         User?            @relation(fields: [authorId], references: [id])
+  categoryId     String?
+  category       BlogCategory?    @relation(fields: [categoryId], references: [id])
+  tags           BlogTag[]        @relation("BlogPostTags")
+  status         BlogPostStatus   @default(IDEA)
+  publishedAt    DateTime?
+  scheduledFor   DateTime?
+  readingTime    Int?
+  isSponsored    Boolean          @default(false)
+  sponsorId      String?
+  sponsor        Partner?         @relation("BlogPostSponsor", fields: [sponsorId], references: [id])
+  seoTitle       String?
+  seoDescription String?
+  ogImage        String?
+  views          Int              @default(0)
+  shares         Int              @default(0)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  comments       BlogComment[]
+
+  @@index([status, publishedAt])
+  @@index([categoryId, publishedAt])
+}
+
+enum BlogPostStatus {
+  IDEA
+  OUTLINE
+  DRAFT
+  REVIEW
+  SCHEDULED
+  PUBLISHED
+  ARCHIVED
+}
+
+model BlogSubscriber {
+  id             String               @id @default(cuid())
+  email          String               @unique
+  locale         String               @default("es")
+  status         BlogSubscriberStatus @default(PENDING)
+  interests      String[]
+  confirmToken   String?              @unique
+  confirmedAt    DateTime?
+  unsubscribedAt DateTime?
+  source         String?
+  createdAt      DateTime             @default(now())
+}
+
+enum BlogSubscriberStatus {
+  PENDING
+  CONFIRMED
+  UNSUBSCRIBED
+}
+
+model BlogComment {
+  id        String            @id @default(cuid())
+  postId    String
+  post      BlogPost          @relation(fields: [postId], references: [id], onDelete: Cascade)
+  userId    String?
+  user      User?             @relation(fields: [userId], references: [id])
+  userName  String?
+  userEmail String?
+  content   String
+  status    BlogCommentStatus @default(PENDING)
+  createdAt DateTime          @default(now())
+
+  @@index([postId, createdAt])
+}
+
+enum BlogCommentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  SPAM
+}
+
+model BlogCampaign {
+  id           String                @id @default(cuid())
+  subject      String
+  content      String
+  status       BlogCampaignStatus    @default(DRAFT)
+  scheduledFor DateTime?
+  sentAt       DateTime?
+  recipients   Int                   @default(0)
+  opens        Int                   @default(0)
+  clicks       Int                   @default(0)
+  unsubscribes Int                   @default(0)
+  isSponsored  Boolean               @default(false)
+  sponsorId    String?
+  sponsor      Partner?              @relation("BlogCampaignSponsor", fields: [sponsorId], references: [id])
+  createdAt    DateTime              @default(now())
+}
+
+enum BlogCampaignStatus {
+  DRAFT
+  SCHEDULED
+  SENT
+  CANCELLED
+}

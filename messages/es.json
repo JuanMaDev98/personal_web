@@ -1,0 +1,224 @@
+{
+  "brand": {
+    "name": "JuanMa Crypto",
+    "tagline": "Jugamos, nos Divertimos y Facturamos",
+    "slogan": {
+      "play": "Jugamos",
+      "fun": "nos Divertimos",
+      "invoice": "y Facturamos"
+    }
+  },
+  "nav": {
+    "home": "Inicio",
+    "partners": "Partners",
+    "testimonials": "Testimonios",
+    "achievements": "Logros",
+    "contact": "Contacto",
+    "hub": "HUB"
+  },
+  "hero": {
+    "badge": "Web3 Gaming · Play to Earn",
+    "title": "El creador que juega, disfruta y factura con web3",
+    "subtitle": "Reviews, herramientas y comunidad sobre los mejores juegos web3 para generar income real. Sin humo, con datos.",
+    "ctaPrimary": "Suscríbete al canal",
+    "ctaSecondary": "Únete a Telegram",
+    "ctaTertiary": "Contactar para partnership",
+    "statsSubtitle": "Comunidad activa en crecimiento"
+  },
+  "slogan": {
+    "title": "Nuestra filosofía",
+    "play": {
+      "title": "Jugamos",
+      "desc": "Probamos cada juego en serio, no desde el sofá. Horas de gameplay real para descubrir qué funciona de verdad."
+    },
+    "fun": {
+      "title": "nos Divertimos",
+      "desc": "La comunidad es alegre, cercana y transparente. Aquí se aprende jugando y se crece acompañado."
+    },
+    "invoice": {
+      "title": "y Facturamos",
+      "desc": "Generamos income real con web3 gaming, sin prometer riqueza fácil. Datos, herramientas y métodos probados."
+    }
+  },
+  "about": {
+    "title": "Sobre mí",
+    "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. JuanMa es un creador de contenido especializado en juegos web3 donde puedes generar dinero de forma gratuita o con baja inversión.",
+    "highlights": {
+      "specialist": "Especialista en Web3 Gaming",
+      "audience": "Comunidad hispanohablante activa",
+      "approach": "Análisis honestos, datos reales",
+      "tools": "Creador de herramientas y bots"
+    }
+  },
+  "metrics": {
+    "title": "Números que importan",
+    "subtitle": "Comunidad verificada en cada plataforma",
+    "loading": "Cargando…"
+  },
+  "partners": {
+    "title": "Partners actuales",
+    "subtitle": "Proyectos con los que colaboro activamente",
+    "visitWebsite": "Visitar web",
+    "noMore": "Más partners próximamente. ¿Quieres colaborar? → Contacto"
+  },
+  "testimonials": {
+    "title": "Lo que dicen de mí",
+    "subtitle": "Testimonios de partners, creadores y miembros de la comunidad",
+    "fromPartner": "Partner",
+    "fromCreator": "Creador",
+    "fromCommunity": "Comunidad"
+  },
+  "achievements": {
+    "title": "Logros e hitos",
+    "subtitle": "Hitos clave en mi camino por web3",
+    "noItems": "Los logros se publicarán pronto."
+  },
+  "contact": {
+    "title": "Hablemos",
+    "subtitle": "Para partnerships, colaboraciones, patrocinios o cualquier propuesta profesional.",
+    "email": "Email",
+    "telegram": "Telegram directo",
+    "form": {
+      "title": "Formulario de contacto",
+      "name": "Nombre",
+      "email": "Email",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "send": "Enviar mensaje",
+      "sending": "Enviando…",
+      "success": "¡Mensaje enviado! Te respondo pronto.",
+      "error": "Hubo un error al enviar. Escríbeme directamente a {{email}}."
+    }
+  },
+  "social": {
+    "title": "Encuéntrame en",
+    "youtube": "YouTube",
+    "telegramChannel": "Canal Telegram",
+    "telegramGroup": "Grupo Telegram",
+    "whatsapp": "WhatsApp",
+    "discord": "Discord"
+  },
+  "footer": {
+    "tagline": "Web3 gaming · Play to earn · Honest reviews",
+    "rights": "Todos los derechos reservados",
+    "madeWith": "Hecho con",
+    "by": "por JuanMa Crypto",
+    "hub": "Panel de administración"
+  },
+  "common": {
+    "loading": "Cargando…",
+    "error": "Algo salió mal",
+    "retry": "Reintentar",
+    "comingSoon": "Próximamente",
+    "placeholder": "Placeholder"
+  },
+  "hub": {
+    "login": {
+      "title": "HUB de administración",
+      "subtitle": "Accede con tu cuenta de Google autorizada",
+      "googleButton": "Continuar con Google",
+      "unauthorized": "Tu cuenta no tiene acceso al panel. Contacta al administrador."
+    },
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "sites": "Sitios",
+      "analytics": "Analítica",
+      "promos": "Promociones",
+      "partners": "Partners",
+      "testimonials": "Testimonios",
+      "feedback": "Feedback",
+      "content": "Contenido",
+      "settings": "Ajustes",
+      "logout": "Cerrar sesión"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "welcome": "Bienvenido de vuelta",
+      "totalVisits": "Visitas totales",
+      "totalConversions": "Conversiones",
+      "activeSites": "Sitios activos",
+      "activePromos": "Promos activas",
+      "last7Days": "Últimos 7 días",
+      "last30Days": "Últimos 30 días",
+      "topSites": "Top sitios por tráfico",
+      "recentFeedback": "Feedback reciente",
+      "metricsTitle": "Métricas de redes"
+    },
+    "sites": {
+      "title": "Gestor de sitios",
+      "subtitle": "Todos los sitios de la red",
+      "name": "Nombre",
+      "subdomain": "Subdominio",
+      "status": "Estado",
+      "lastUpdate": "Última actualización",
+      "actions": "Acciones"
+    },
+    "analytics": {
+      "title": "Analítica",
+      "subtitle": "Tráfico y conversiones por sitio",
+      "visits": "Visitas",
+      "uniqueVisitors": "Visitantes únicos",
+      "conversions": "Conversiones",
+      "topPages": "Páginas top",
+      "sources": "Fuentes de tráfico"
+    },
+    "promos": {
+      "title": "Gestor de promociones",
+      "subtitle": "Crea y distribuye promos de partners a toda la red",
+      "create": "Nueva promo",
+      "name": "Nombre interno",
+      "partner": "Partner",
+      "type": "Tipo",
+      "sites": "Sitios",
+      "period": "Periodo",
+      "status": "Estado",
+      "impressions": "Impresiones",
+      "clicks": "Clicks",
+      "ctr": "CTR",
+      "actions": "Acciones"
+    },
+    "partners": {
+      "title": "Gestor de partners",
+      "subtitle": "Todos los partners con los que colaboras",
+      "create": "Nuevo partner",
+      "name": "Nombre",
+      "website": "Web",
+      "status": "Estado",
+      "featured": "Destacado",
+      "actions": "Acciones"
+    },
+    "testimonials": {
+      "title": "Gestor de testimonios",
+      "subtitle": "Testimonios de partners, creadores y comunidad",
+      "create": "Nuevo testimonio",
+      "author": "Autor",
+      "category": "Categoría",
+      "status": "Estado",
+      "actions": "Acciones"
+    },
+    "feedback": {
+      "title": "Bandeja de feedback",
+      "subtitle": "Mensajes recibidos desde todas las webs",
+      "type": "Tipo",
+      "from": "De",
+      "date": "Fecha",
+      "status": "Estado",
+      "actions": "Acciones",
+      "empty": "No hay feedback todavía"
+    },
+    "content": {
+      "title": "Contenido dinámico",
+      "subtitle": "Edita textos que cambian sin redeploy",
+      "save": "Guardar cambios",
+      "saved": "Cambios guardados"
+    },
+    "settings": {
+      "title": "Ajustes",
+      "subtitle": "Configuración general",
+      "profile": "Perfil",
+      "brand": "Marca",
+      "apiKeys": "API keys",
+      "dangerZone": "Zona peligrosa"
+    }
+  }
+}

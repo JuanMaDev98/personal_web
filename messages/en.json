@@ -1,0 +1,224 @@
+{
+  "brand": {
+    "name": "JuanMa Crypto",
+    "tagline": "We Play, Have Fun and Invoice",
+    "slogan": {
+      "play": "We Play",
+      "fun": "Have Fun",
+      "invoice": "and Invoice"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "partners": "Partners",
+    "testimonials": "Testimonials",
+    "achievements": "Achievements",
+    "contact": "Contact",
+    "hub": "HUB"
+  },
+  "hero": {
+    "badge": "Web3 Gaming · Play to Earn",
+    "title": "The creator who plays, enjoys and invoices with web3",
+    "subtitle": "Reviews, tools and community about the best web3 games to generate real income. No smoke, only data.",
+    "ctaPrimary": "Subscribe to channel",
+    "ctaSecondary": "Join Telegram",
+    "ctaTertiary": "Contact for partnership",
+    "statsSubtitle": "Active community in growth"
+  },
+  "slogan": {
+    "title": "Our philosophy",
+    "play": {
+      "title": "We Play",
+      "desc": "We test every game seriously, not from the couch. Hours of real gameplay to discover what actually works."
+    },
+    "fun": {
+      "title": "Have Fun",
+      "desc": "The community is cheerful, close and transparent. Here you learn by playing and grow accompanied."
+    },
+    "invoice": {
+      "title": "and Invoice",
+      "desc": "We generate real income with web3 gaming, without promising easy wealth. Data, tools and proven methods."
+    }
+  },
+  "about": {
+    "title": "About me",
+    "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. JuanMa is a content creator specialized in web3 games where you can make money for free or with low investment.",
+    "highlights": {
+      "specialist": "Web3 Gaming specialist",
+      "audience": "Active Spanish-speaking community",
+      "approach": "Honest analysis, real data",
+      "tools": "Tools and bots creator"
+    }
+  },
+  "metrics": {
+    "title": "Numbers that matter",
+    "subtitle": "Verified community on each platform",
+    "loading": "Loading…"
+  },
+  "partners": {
+    "title": "Current partners",
+    "subtitle": "Projects I actively collaborate with",
+    "visitWebsite": "Visit website",
+    "noMore": "More partners coming soon. Want to collaborate? → Contact"
+  },
+  "testimonials": {
+    "title": "What they say about me",
+    "subtitle": "Testimonials from partners, creators and community members",
+    "fromPartner": "Partner",
+    "fromCreator": "Creator",
+    "fromCommunity": "Community"
+  },
+  "achievements": {
+    "title": "Achievements & milestones",
+    "subtitle": "Key milestones in my web3 journey",
+    "noItems": "Achievements will be published soon."
+  },
+  "contact": {
+    "title": "Let's talk",
+    "subtitle": "For partnerships, collaborations, sponsorships or any professional proposal.",
+    "email": "Email",
+    "telegram": "Direct Telegram",
+    "form": {
+      "title": "Contact form",
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send message",
+      "sending": "Sending…",
+      "success": "Message sent! I'll reply soon.",
+      "error": "There was an error sending. Write me directly to {{email}}."
+    }
+  },
+  "social": {
+    "title": "Find me on",
+    "youtube": "YouTube",
+    "telegramChannel": "Telegram channel",
+    "telegramGroup": "Telegram group",
+    "whatsapp": "WhatsApp",
+    "discord": "Discord"
+  },
+  "footer": {
+    "tagline": "Web3 gaming · Play to earn · Honest reviews",
+    "rights": "All rights reserved",
+    "madeWith": "Made with",
+    "by": "by JuanMa Crypto",
+    "hub": "Admin panel"
+  },
+  "common": {
+    "loading": "Loading…",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "comingSoon": "Coming soon",
+    "placeholder": "Placeholder"
+  },
+  "hub": {
+    "login": {
+      "title": "Admin HUB",
+      "subtitle": "Sign in with your authorized Google account",
+      "googleButton": "Continue with Google",
+      "unauthorized": "Your account does not have access to the panel. Contact the administrator."
+    },
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "sites": "Sites",
+      "analytics": "Analytics",
+      "promos": "Promotions",
+      "partners": "Partners",
+      "testimonials": "Testimonials",
+      "feedback": "Feedback",
+      "content": "Content",
+      "settings": "Settings",
+      "logout": "Sign out"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "welcome": "Welcome back",
+      "totalVisits": "Total visits",
+      "totalConversions": "Conversions",
+      "activeSites": "Active sites",
+      "activePromos": "Active promos",
+      "last7Days": "Last 7 days",
+      "last30Days": "Last 30 days",
+      "topSites": "Top sites by traffic",
+      "recentFeedback": "Recent feedback",
+      "metricsTitle": "Network metrics"
+    },
+    "sites": {
+      "title": "Sites manager",
+      "subtitle": "All sites in the network",
+      "name": "Name",
+      "subdomain": "Subdomain",
+      "status": "Status",
+      "lastUpdate": "Last update",
+      "actions": "Actions"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "subtitle": "Traffic and conversions per site",
+      "visits": "Visits",
+      "uniqueVisitors": "Unique visitors",
+      "conversions": "Conversions",
+      "topPages": "Top pages",
+      "sources": "Traffic sources"
+    },
+    "promos": {
+      "title": "Promotions manager",
+      "subtitle": "Create and distribute partner promos across the network",
+      "create": "New promo",
+      "name": "Internal name",
+      "partner": "Partner",
+      "type": "Type",
+      "sites": "Sites",
+      "period": "Period",
+      "status": "Status",
+      "impressions": "Impressions",
+      "clicks": "Clicks",
+      "ctr": "CTR",
+      "actions": "Actions"
+    },
+    "partners": {
+      "title": "Partners manager",
+      "subtitle": "All partners you collaborate with",
+      "create": "New partner",
+      "name": "Name",
+      "website": "Website",
+      "status": "Status",
+      "featured": "Featured",
+      "actions": "Actions"
+    },
+    "testimonials": {
+      "title": "Testimonials manager",
+      "subtitle": "Testimonials from partners, creators and community",
+      "create": "New testimonial",
+      "author": "Author",
+      "category": "Category",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "feedback": {
+      "title": "Feedback inbox",
+      "subtitle": "Messages received from all sites",
+      "type": "Type",
+      "from": "From",
+      "date": "Date",
+      "status": "Status",
+      "actions": "Actions",
+      "empty": "No feedback yet"
+    },
+    "content": {
+      "title": "Dynamic content",
+      "subtitle": "Edit texts that change without redeploy",
+      "save": "Save changes",
+      "saved": "Changes saved"
+    },
+    "settings": {
+      "title": "Settings",
+      "subtitle": "General configuration",
+      "profile": "Profile",
+      "brand": "Brand",
+      "apiKeys": "API keys",
+      "dangerZone": "Danger zone"
+    }
+  }
+}
